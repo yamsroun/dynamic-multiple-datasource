@@ -1,0 +1,64 @@
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+  datasource:
+    groups:
+      integration:
+        primary: true
+        type: CLUSTER
+        writer:
+          jdbc-url: jdbc:h2:mem:integration
+          username: sa
+          password:
+          minimum-idle: 2
+          maximum-pool-size: 5
+        reader:
+          jdbc-url: jdbc:h2:mem:integration
+          username: sa
+          password:
+          minimum-idle: 2
+          maximum-pool-size: 5
+      msa:
+        type: CLUSTER
+        writer:
+          jdbc-url: jdbc:h2:mem:msa
+          username: sa
+          password:
+          minimum-idle: 2
+          maximum-pool-size: 5
+        reader:
+          jdbc-url: jdbc:h2:mem:msa
+          username: sa
+          password:
+          minimum-idle: 2
+          maximum-pool-size: 5
+      etc:
+        type: SINGLE
+        single:
+          jdbc-url: jdbc:h2:mem:etc
+          username: sa
+          password:
+          minimum-idle: 2
+          maximum-pool-size: 5
+
+    hikari:
+      minimum-idle: 25
+      maximum-pool-size: 25
+      max-lifetime: 60000
+      connection-timeout: 2700
+      validation-timeout: 2100
+      leak-detection-threshold: 59000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 500
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        rewriteBatchedStatements: true
+
+logging:
+  level:
+    yamsroun.multids: DEBUG
+    com.zaxxer:
+      hikari: TRACE
+      hikari.HikariConfig: DEBUG
