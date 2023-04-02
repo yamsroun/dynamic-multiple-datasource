@@ -11,6 +11,7 @@ import java.util.Objects;
 @ConstructorBinding
 public class DataSourceGroupProperties {
 
+    private final boolean primary;
     private final DataSourceGroupType type;
 
     @NestedConfigurationProperty
@@ -24,10 +25,12 @@ public class DataSourceGroupProperties {
 
     public DataSourceGroupProperties(
         DataSourceGroupType type,
+        Boolean primary,
         EachDataSourceProperties writer,
         EachDataSourceProperties reader,
         EachDataSourceProperties single
     ) {
+        this.primary = Objects.requireNonNullElse(primary, false);
         this.type = Objects.requireNonNullElse(type, DataSourceGroupType.SINGLE);
         if (this.type.isCluster()) {
             if (Objects.isNull(writer)) {
@@ -45,6 +48,10 @@ public class DataSourceGroupProperties {
         this.writer = writer;
         this.reader = reader;
         this.single = single;
+    }
+
+    public boolean isPrimary() {
+        return primary;
     }
 
     public boolean isCluster() {

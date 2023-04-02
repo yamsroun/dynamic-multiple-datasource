@@ -7,20 +7,20 @@ import yamsroun.multids.config.datasource.property.MultipleDataSourceProperties;
 
 @Slf4j
 @Component
-public class GroupDataSourceFactory {
+public class DataSourceGroupFactory {
 
     private final MultipleDataSourceProperties multipleDataSourceProperties;
 
-    private final ClusterGroupDataSourceFactory clusterGroupDataSourceFactory;
-    private final SingleGroupDataSourceFactory singleGroupDataSourceFactory;
+    private final ClusterDataSourceGroupFactory clusterDataSourceGroupFactory;
+    private final SingleDataSourceGroupFactory singleDataSourceGroupFactory;
 
-    public GroupDataSourceFactory(
+    public DataSourceGroupFactory(
         MultipleDataSourceProperties multipleDataSourceProperties,
         EachDataSourceFactory eachDataSourceFactory
     ) {
         this.multipleDataSourceProperties = multipleDataSourceProperties;
-        this.clusterGroupDataSourceFactory = new ClusterGroupDataSourceFactory(eachDataSourceFactory);
-        this.singleGroupDataSourceFactory = new SingleGroupDataSourceFactory(eachDataSourceFactory);
+        this.clusterDataSourceGroupFactory = new ClusterDataSourceGroupFactory(eachDataSourceFactory);
+        this.singleDataSourceGroupFactory = new SingleDataSourceGroupFactory(eachDataSourceFactory);
     }
 
 
@@ -31,9 +31,9 @@ public class GroupDataSourceFactory {
 
     private void createGroupDataSource(String groupName, DataSourceGroupProperties groupProps) {
         if (groupProps.isCluster()) {
-            clusterGroupDataSourceFactory.create(groupName, groupProps);
+            clusterDataSourceGroupFactory.create(groupName, groupProps);
         } else {
-            singleGroupDataSourceFactory.create(groupName, groupProps);
+            singleDataSourceGroupFactory.create(groupName, groupProps);
         }
     }
 

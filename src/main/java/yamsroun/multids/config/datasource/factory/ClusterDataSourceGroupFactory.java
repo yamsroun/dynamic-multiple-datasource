@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Slf4j
 @RequiredArgsConstructor
-public class ClusterGroupDataSourceFactory extends AbstractGroupDataSourceFactory {
+public class ClusterDataSourceGroupFactory extends AbstractGroupDataSourceFactory {
 
     private final EachDataSourceFactory eachDsFactory;
 

@@ -7,7 +7,7 @@ import yamsroun.multids.config.datasource.util.BeanRegistrationUtils;
 
 @Slf4j
 @RequiredArgsConstructor
-public class SingleGroupDataSourceFactory extends AbstractGroupDataSourceFactory {
+public class SingleDataSourceGroupFactory extends AbstractGroupDataSourceFactory {
 
     private final EachDataSourceFactory eachDataSourceFactory;
 

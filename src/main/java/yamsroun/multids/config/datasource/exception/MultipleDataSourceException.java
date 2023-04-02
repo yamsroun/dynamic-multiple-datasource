@@ -1,8 +1,8 @@
 package yamsroun.multids.config.datasource.exception;
 
-public class CustomDataSourceException extends RuntimeException {
+public class MultipleDataSourceException extends RuntimeException {
 
-    public CustomDataSourceException(String message) {
+    public MultipleDataSourceException(String message) {
         super(message);
     }
 
